@@ -9,7 +9,8 @@ dropDown1();
 
 function dropDown1(){
     getAvailableCourses().then((data) => {
-        let courseOptionsHtml = '';
+        let courseOptionsHtml = `<option>Select A Course</option>`;
+        
         data.forEach((course) => {
             courseOptionsHtml += `<option value="${course.id}">${course.name}</option>`;
         });
@@ -61,7 +62,7 @@ function dropDown2(data) {
         });
 
         //Displays the drop down options
-        let cleanTeaBox = '';
+        let cleanTeaBox = `<option>Select A Team</option>`;;
         hol.teeBoxes.forEach(function (box, index) {
             let yar = 0;
             if (totalYards[box.teeType]) {
@@ -216,38 +217,43 @@ document.getElementById('add-Player').addEventListener('click', () => addingPlay
 
 function addingPlayers(){
     let inerSelect = document.getElementById('selectPlayer');
-    const CreateRow = `
-    <tr id="${inerSelect.value}">
-        <th scope="row">${inerSelect.value} <h6 type="button" id="del" >Delete</h6> </th>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row" id="update" contenteditable="true"></td>
-        <td scope="row"</td>
-    </tr>`;
-    document.getElementById('bod').innerHTML += CreateRow;
-    document.getElementById('bod2').innerHTML += CreateRow;
+    let noNum = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-    const finalName = `<th scope="col" id="d${inerSelect.value}">${inerSelect.value}</th>`
-    document.getElementById('name').innerHTML += finalName;
+    console.log(inerSelect.value.includes(noNum));
+    if (!inerSelect.value.includes(noNum)) {
+        const CreateRow = `
+        <tr id="${inerSelect.value}">
+            <th scope="row">${inerSelect.value} <h6 type="button" id="del" >Delete</h6> </th>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row" id="update" contenteditable="true"></td>
+            <td scope="row"</td>
+        </tr>`;
+        document.getElementById('bod').innerHTML += CreateRow;
+        document.getElementById('bod2').innerHTML += CreateRow;
 
-    const finalNameNum = `<td scope="row" id="f${inerSelect.value}"</td>`
-    document.getElementById('complete-total').innerHTML += finalNameNum;
+        const finalName = `<th scope="col" id="d${inerSelect.value}">${inerSelect.value}</th>`
+        document.getElementById('name').innerHTML += finalName;
 
-    inerSelect.value = '';
+        const finalNameNum = `<td scope="row" id="f${inerSelect.value}"</td>`
+        document.getElementById('complete-total').innerHTML += finalNameNum;
 
-    
+        inerSelect.value = '';
 
-    //adds total
-    update();
+        
 
-    //Adds player deleting capability
-    deletingPlayers();
+        //adds total
+        update();
+
+        //Adds player deleting capability
+        deletingPlayers();
+    }
 
 }
 
