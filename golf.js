@@ -22,8 +22,6 @@ function dropDown1(){
     
 }
 
-
-
 //Gets info from course selected
 async function CourseDetails(golfCourseId) {
     return fetch(
@@ -46,7 +44,6 @@ function main() {
         
     });
 }
-
 
 function dropDown2(data) {
     let totalYards = {};
@@ -76,7 +73,6 @@ function dropDown2(data) {
         document.getElementById('tee-box-select').innerHTML = cleanTeaBox;
     });
 }
-
 
 function tableAdd(data) {
     let contain = document.getElementById('table-holder');
